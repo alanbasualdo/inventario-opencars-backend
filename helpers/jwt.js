@@ -27,7 +27,6 @@ const comprobarJWT = async (token = '') => {
     try {
 
         if (token.length < 10) {
-
             return null
         }
 
