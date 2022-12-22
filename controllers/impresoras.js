@@ -3,8 +3,8 @@ const Impresora = require('../models/impresora')
 
 const impPost = async (req, res = response) => {
 
-    const { ciudad, sucursal, marca, modelo, toner, propia, sector,
-        ip, codigo, proveedor, comentarios } = req.body
+    const { ciudad, sucursal, marca, modelo, toner,
+        propia, estado, sector, codigo, ip, proveedor, comentarios } = req.body
 
     const existe = await Impresora.findOne({
         ciudad, sucursal, marca, modelo, toner, sector, ip, codigo
@@ -18,8 +18,8 @@ const impPost = async (req, res = response) => {
     }
 
     const impresora = new Impresora({
-        ciudad, sucursal, marca, modelo, toner, propia, sector,
-        ip, codigo, proveedor, comentarios
+        ciudad, sucursal, marca, modelo, toner,
+        propia, estado, sector, codigo, ip, proveedor, comentarios
     })
 
     // Guardar en base de datos
@@ -38,7 +38,7 @@ const impGet = async (req, res = response) => {
 
     const [total, impresoras] = await Promise.all([
         Impresora.countDocuments(query),
-        Impresora.find(query)
+        Impresora.find(query).sort({ $natural: -1 })
     ])
 
     res.json({
