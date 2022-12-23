@@ -47,7 +47,18 @@ const impGet = async (req, res = response) => {
     })
 }
 
+const impDel = async (req, res = response) => {
+
+    const { id } = req.params
+    await Impresora.findByIdAndDelete(id)
+
+    res.json({
+        msg: 'ok'
+    })
+}
+
 module.exports = {
     impPost,
-    impGet
+    impGet,
+    impDel
 }
