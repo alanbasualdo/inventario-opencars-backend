@@ -6,9 +6,7 @@ const impPost = async (req, res = response) => {
     const { ciudad, sucursal, marca, modelo, toner,
         propia, estado, sector, codigo, ip, proveedor, comentarios } = req.body
 
-    const existe = await Impresora.findOne({
-        ciudad, sucursal, marca, modelo, toner, sector, ip, codigo
-    })
+    const existe = await Impresora.findOne({ ip })
 
     if (existe) {
         res.json({
@@ -57,8 +55,32 @@ const impDel = async (req, res = response) => {
     })
 }
 
+const impPut = async (req, res = response) => {
+
+    console.log(req.params)
+    console.log(req.body)
+
+    res.json({
+        msg: 'ok'
+    })
+
+    /* const { id } = req.params
+    const { state, user, ...data } = req.body
+
+    data.user = req.user._id
+
+    const product = await Product.findByIdAndUpdate(id, data, { new: true })
+
+    res.json({
+        msg: `${product.name} se ha actualizado correctamente.`,
+        product
+    }) */
+
+}
+
 module.exports = {
     impPost,
     impGet,
-    impDel
+    impDel,
+    impPut
 }

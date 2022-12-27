@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose')
 
-const Impresora = Schema({
+const Celular = Schema({
 
     ciudad: {
         type: String
@@ -14,26 +14,20 @@ const Impresora = Schema({
     modelo: {
         type: String
     },
-    toner: {
-        type: String
+    numero: {
+        type: Number
     },
-    propia: {
+    usuario: {
         type: String
     },
     estado: {
         type: String,
-        default: 'Activa'
+        default: 'Activo'
     },
-    sector: {
+    corporativo: {
         type: String
     },
-    ip: {
-        type: String
-    },
-    codigo: {
-        type: Number
-    },
-    proveedor: {
+    facturacion: {
         type: String
     },
     comentarios: {
@@ -43,10 +37,10 @@ const Impresora = Schema({
 
 })
 
-Impresora.methods.toJSON = function () {
-    const { __v, password, _id, ...impresora } = this.toObject()
-    impresora.uid = _id
-    return impresora
+Celular.methods.toJSON = function () {
+    const { __v, password, _id, ...celular } = this.toObject()
+    celular.uid = _id
+    return celular
 }
 
-module.exports = model('Impresora', Impresora)
+module.exports = model('Celular', Celular)

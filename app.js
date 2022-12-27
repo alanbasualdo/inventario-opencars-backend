@@ -22,6 +22,7 @@ app.use(express.json())
 app.use('/login', require('./routes/login'))
 app.use('/register', require('./routes/register'))
 app.use('/impresoras', require('./routes/impresoras'))
+app.use('/celulares', require('./routes/celulares'))
 
 app.get('*', (req, res) => {
     res.sendFile(__dirname + '/public/index.html')

@@ -1,23 +1,23 @@
 const { Router } = require("express")
-const { impGet, impPost, impDel, impPut } = require("../controllers/impresoras")
+const { celGet, celPost, celDel, celPut } = require("../controllers/celulares")
 const { validarJWT } = require("../middlewares/jwt-validator")
 
 const router = Router()
 
 router.post('/', [
     validarJWT
-], impPost)
+], celPost)
 
 router.get('/', [
     validarJWT
-], impGet)
+], celGet)
 
 router.delete('/:id', [
     validarJWT
-], impDel)
+], celDel)
 
 router.put('/:id', [
     validarJWT
-], impPut)
+], celPut)
 
 module.exports = router
