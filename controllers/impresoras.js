@@ -57,25 +57,15 @@ const impDel = async (req, res = response) => {
 
 const impPut = async (req, res = response) => {
 
-    console.log(req.params)
-    console.log(req.body)
+    const { id } = req.params
+    const data = req.body
+
+    const impresora = await Impresora.findByIdAndUpdate(id, data, { new: true })
 
     res.json({
-        msg: 'ok'
+        msg: 'ok',
+        impresora
     })
-
-    /* const { id } = req.params
-    const { state, user, ...data } = req.body
-
-    data.user = req.user._id
-
-    const product = await Product.findByIdAndUpdate(id, data, { new: true })
-
-    res.json({
-        msg: `${product.name} se ha actualizado correctamente.`,
-        product
-    }) */
-
 }
 
 module.exports = {

@@ -78,7 +78,7 @@ const userDelete = async (req, res = response) => {
     const user = await User.findByIdAndDelete(id)
 
     res.json({
-        'msg': `Usuario ${user.email} eliminado correctamente.`
+        msg: 'ok'
     })
 }
 

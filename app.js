@@ -23,6 +23,8 @@ app.use('/login', require('./routes/login'))
 app.use('/register', require('./routes/register'))
 app.use('/impresoras', require('./routes/impresoras'))
 app.use('/celulares', require('./routes/celulares'))
+app.use('/ciudades', require('./routes/ciudades'))
+app.use('/sucursales', require('./routes/sucursales'))
 
 app.get('*', (req, res) => {
     res.sendFile(__dirname + '/public/index.html')

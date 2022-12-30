@@ -57,25 +57,15 @@ const celDel = async (req, res = response) => {
 
 const celPut = async (req, res = response) => {
 
-    console.log(req.params)
-    console.log(req.body)
+    const { id } = req.params
+    const data = req.body
+
+    const celular = await Celular.findByIdAndUpdate(id, data, { new: true })
 
     res.json({
-        msg: 'ok'
+        msg: 'ok',
+        celular
     })
-
-    /* const { id } = req.params
-    const { state, user, ...data } = req.body
-
-    data.user = req.user._id
-
-    const product = await Product.findByIdAndUpdate(id, data, { new: true })
-
-    res.json({
-        msg: `${product.name} se ha actualizado correctamente.`,
-        product
-    }) */
-
 }
 
 module.exports = {
