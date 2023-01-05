@@ -1,16 +1,16 @@
 const { Schema, model } = require('mongoose')
 
-const Marca = Schema({
+const MarcaCelular = Schema({
 
     nombre: {
         type: String
     }
 })
 
-Marca.methods.toJSON = function () {
+MarcaCelular.methods.toJSON = function () {
     const { __v, password, _id, ...marca } = this.toObject()
     marca.uid = _id
     return marca
 }
 
-module.exports = model('Marca', Marca)
+module.exports = model('MarcaCelular', MarcaCelular)

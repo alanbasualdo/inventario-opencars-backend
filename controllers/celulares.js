@@ -1,7 +1,7 @@
 const { response } = require('express')
 const Celular = require('../models/celular')
-const Marca = require('../models/marcaCelular')
-const Modelo = require('../models/modeloCelular')
+const MarcaCelular = require('../models/marcaCelular')
+const ModeloCelular = require('../models/modeloCelular')
 
 const celPost = async (req, res = response) => {
 
@@ -76,7 +76,7 @@ const marcaPost = async (req, res = response) => {
 
     const { nombre } = req.body
 
-    const existe = await Marca.findOne({ nombre })
+    const existe = await MarcaCelular.findOne({ nombre })
 
     if (existe) {
         res.json({
@@ -85,7 +85,7 @@ const marcaPost = async (req, res = response) => {
         return
     }
 
-    const marca = new Marca({ nombre })
+    const marca = new MarcaCelular({ nombre })
 
     // Guardar en base de datos
     await marca.save()
@@ -101,8 +101,8 @@ const marcaGet = async (req, res = response) => {
     const query = req.body
 
     const [total, marcas] = await Promise.all([
-        Marca.countDocuments(query),
-        Marca.find(query).sort({ $natural: -1 })
+        MarcaCelular.countDocuments(query),
+        MarcaCelular.find(query).sort({ $natural: -1 })
     ])
 
     res.json({
@@ -114,7 +114,7 @@ const marcaGet = async (req, res = response) => {
 const marcaDel = async (req, res = response) => {
 
     const { id } = req.params
-    await Marca.findByIdAndDelete(id)
+    await MarcaCelular.findByIdAndDelete(id)
 
     res.json({
         msg: 'ok'
@@ -127,7 +127,7 @@ const modeloPost = async (req, res = response) => {
 
     const { nombre } = req.body
 
-    const existe = await Modelo.findOne({ nombre })
+    const existe = await ModeloCelular.findOne({ nombre })
 
     if (existe) {
         res.json({
@@ -136,7 +136,7 @@ const modeloPost = async (req, res = response) => {
         return
     }
 
-    const modelo = new Modelo({ nombre })
+    const modelo = new ModeloCelular({ nombre })
 
     // Guardar en base de datos
     await modelo.save()
@@ -152,8 +152,8 @@ const modeloGet = async (req, res = response) => {
     const query = req.body
 
     const [total, modelos] = await Promise.all([
-        Modelo.countDocuments(query),
-        Modelo.find(query).sort({ $natural: -1 })
+        ModeloCelular.countDocuments(query),
+        ModeloCelular.find(query).sort({ $natural: -1 })
     ])
 
     res.json({
@@ -165,7 +165,7 @@ const modeloGet = async (req, res = response) => {
 const modeloDel = async (req, res = response) => {
 
     const { id } = req.params
-    await Modelo.findByIdAndDelete(id)
+    await ModeloCelular.findByIdAndDelete(id)
 
     res.json({
         msg: 'ok'

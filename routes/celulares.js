@@ -22,29 +22,29 @@ router.put('/:id', [
 
 /////////////////////////////////////////////////// Marcas ///////////////////////////////////////////////////
 
-router.post('/marcas', [
+router.post('/marcasCelulares', [
     validarJWT
 ], marcaPost)
 
-router.get('/marcas', [
+router.get('/marcasCelulares', [
     validarJWT
 ], marcaGet)
 
-router.delete('/marcas/:id', [
+router.delete('/marcasCelulares/:id', [
     validarJWT
 ], marcaDel)
 
 /////////////////////////////////////////////////// Modelos ///////////////////////////////////////////////////
 
-router.post('/modelos', [
+router.post('/modelosCelulares', [
     validarJWT
 ], modeloPost)
 
-router.get('/modelos', [
+router.get('/modelosCelulares', [
     validarJWT
 ], modeloGet)
 
-router.delete('/modelos/:id', [
+router.delete('/modelosCelulares/:id', [
     validarJWT
 ], modeloDel)
 
