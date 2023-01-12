@@ -62,9 +62,24 @@ const impDel = async (req, res = response) => {
 const impPut = async (req, res = response) => {
 
     const { id } = req.params
-    const data = req.body
+    const { estado, sector, ip, codigo } = req.body
 
-    const impresora = await Impresora.findByIdAndUpdate(id, data, { new: true })
+    const existeIp = await Impresora.findOne({ ip })
+    const existeCod = await Impresora.findOne({ codigo })
+
+    if (existeIp) {
+        res.json({
+            msg: 'existeIp'
+        })
+        return
+    } else if (existeCod) {
+        res.json({
+            msg: 'existeCod'
+        })
+        return
+    }
+
+    const impresora = await Impresora.findByIdAndUpdate(id, { estado, sector, ip, codigo }, { new: true })
 
     res.json({
         msg: 'ok',
