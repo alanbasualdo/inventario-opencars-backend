@@ -16,28 +16,20 @@ const userGet = async (req = request, res = response) => {
 }
 
 const userPost = async (req, res = response) => {
-
     const { email, password } = req.body
-
     try {
-
         const existeEmail = await User.findOne({ email })
-
         if (existeEmail) {
             return res.json({
                 msg: 'EmailAlreadyRegistered'
             })
         }
-
         const user = new User({ email, password })
-
         // Encriptar la constraseña(hash)
         const salt = bcryptjs.genSaltSync()
         user.password = bcryptjs.hashSync(password, salt)
-
         // Guardar en base de datos
         await user.save()
-
         res.json({
             msg: 'UserCrated',
             user
@@ -71,12 +63,8 @@ const userPut = async (req, res = response) => {
 }
 
 const userDelete = async (req, res = response) => {
-
     const { id } = req.params
-
-    // Borrarlo físicamente
     const user = await User.findByIdAndDelete(id)
-
     res.json({
         msg: 'ok'
     })
